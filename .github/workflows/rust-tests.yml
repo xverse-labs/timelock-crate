@@ -10,7 +10,7 @@ jobs:
             - name: Install Rust
               uses: actions-rs/toolchain@v1
               with:
-                toolchain: stable
+                toolchain: nightly
                 override: true
                 components: rustfmt, clippy
 
@@ -22,4 +22,4 @@ jobs:
               run: |
                 export PATH="/home/runner/.local/share/solana/install/active_release/bin:$PATH"
                 cargo build-bpf
-                cargo test-bpf -- --nocapture
+                RUST_LOG=solana_program_runtime=debug cargo test-bpf -- --nocapture
